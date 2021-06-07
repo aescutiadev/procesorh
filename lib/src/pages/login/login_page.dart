@@ -52,7 +52,6 @@ class ScaffoldApp extends StatelessWidget {
 
   Widget _imageHeader() => Center(child: Image.asset('images/Logo-Small.png'));
 
-
   Widget _form() => Form(
         key: _formState,
         child: Container(
@@ -126,9 +125,10 @@ class ScaffoldApp extends StatelessWidget {
         ),
       );
 
-  void onPressed() {
+  void onPressed() async {
     if (_formState.currentState.validate()) {
-      if (lc.validForm()) {
+      bool isValid = await lc.validForm();
+      if (isValid) {
         Get.snackbar('Procesando', 'Proceso Correcto');
         Get.toNamed('/reclutamiento');
       } else

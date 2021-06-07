@@ -141,13 +141,16 @@ class FirstForm extends StatelessWidget {
             style: TextStyle(fontSize: 14.0),
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(5.0),
+                borderSide: BorderSide(color: Colors.grey),
               ),
-              fillColor: Colors.grey.shade300,
-              filled: true,
+              // fillColor: Colors.grey.shade300,
+              // filled: true,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
+              fillColor: Colors.white,
+              hoverColor: Colors.grey.shade200,
+              filled: true,
             ),
           ),
         ),

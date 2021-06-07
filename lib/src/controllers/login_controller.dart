@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:rh_proyect/src/database/models/user.dart';
 
 class LoginController extends GetxController {
   var email = ''.obs;
@@ -29,7 +31,7 @@ class LoginController extends GetxController {
       isvalidusername.value = false;
       return username.value = 'Ponga su nombre de usuario';
     }
-    if (text.contains('0')) {
+    if (text.contains('1')) {
       username.value = text;
       isvalidusername.value = true;
       return null;
@@ -44,19 +46,21 @@ class LoginController extends GetxController {
       isvalidpassword.value = false;
       return password.value = 'Ponga su contraseña';
     }
-    if (text.length >= 6) {
+    if (text.length >= 4) {
       password.value = text;
       isvalidpassword.value = true;
       return null;
     } else {
       isvalidpassword.value = false;
-      return password.value = 'Ponga una contraseña de más de 6 caracteres';
+      return password.value = 'Ponga una contraseña de más de 3 caracteres';
     }
   }
 
-  bool validForm() {
-    if (isvalidemail.value && isvalidusername.value && isvalidpassword.value)
-      return true;
+  Future<bool> validForm() async {
+    var box = Hive.box<User>('users');
+    if (username.value == box.get(0).username &&
+        email.value == box.get(0).email &&
+        password.value == box.get(0).password) return true;
     return false;
   }
 }
