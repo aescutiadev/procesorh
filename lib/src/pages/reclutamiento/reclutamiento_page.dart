@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:rh_proyect/src/controllers/login_controller.dart';
 import 'package:rh_proyect/src/pages/reclutamiento/formulario_page.dart';
 
 class ReclutamientoPage extends StatelessWidget {
@@ -7,10 +9,29 @@ class ReclutamientoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lc = Get.find<LoginController>().isBlank
+        ? Get.put<LoginController>(LoginController())
+        : Get.find<LoginController>();
     return Scaffold(
       appBar: AppBar(
         title: Text('RECLUTAMIENTO GRUPO ORTIZ'),
         centerTitle: true,
+        actions: [
+          TextButton.icon(
+            onPressed: () async {
+              GetStorage().write('active', false);
+              Get.offAllNamed('/');
+              lc.onClose();
+            },
+            icon: Icon(Icons.exit_to_app),
+            label: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'CERRAR SESIÓN',
+              ),
+            ),
+          )
+        ],
       ),
       body: FirtView(),
     );

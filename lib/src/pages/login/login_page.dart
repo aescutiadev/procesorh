@@ -130,9 +130,9 @@ class ScaffoldApp extends StatelessWidget {
       bool isValid = await lc.validForm();
       if (isValid) {
         Get.snackbar('Procesando', 'Proceso Correcto');
-        Get.toNamed('/reclutamiento');
+        Get.offNamed('/reclutamiento');
       } else
-        Get.snackbar('Procesando', 'Error de proceso');
+        Get.snackbar('Procesando', 'No es valido');
     } else
       Get.snackbar('Procesando', 'Error de proceso');
   }

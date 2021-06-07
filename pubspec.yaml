@@ -30,6 +30,7 @@ dependencies:
   http:
   path:
   get: ^4.1.4
+  get_storage:
   hive: ^2.0.4
   hive_flutter: ^1.0.0
   google_fonts: ^2.1.0
